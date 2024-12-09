@@ -47,16 +47,22 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-
+        
     # Build the application
     - name: Build the application
       run: mvn clean package -DskipTests
 
-    # Run the application locally
+    # Run the application locally with production service URLs in the correct order
     - name: Start Application Locally
       run: |
-        nohup java -jar target/orders-service-example-0.0.1-SNAPSHOT.jar --server.port=8081 > app.log 2>&1 &
+        nohup java -jar target/orders-service-example-0.0.1-SNAPSHOT.jar \
+          --server.port=8081 \
+          --payment.service.url=https://h95nhqkty7.execute-api.us-east-1.amazonaws.com/payments \
+          --shipping.service.url=https://h95nhqkty7.execute-api.us-east-1.amazonaws.com/shipping \
+          --products.service.url=https://h95nhqkty7.execute-api.us-east-1.amazonaws.com/products \
+          > app.log 2>&1 &
         sleep 10 # Wait for the application to start
+
 
     # Run Postman tests using Newman
     - name: Run Functional Tests with Newman

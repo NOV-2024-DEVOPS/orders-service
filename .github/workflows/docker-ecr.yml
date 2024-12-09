@@ -57,9 +57,9 @@ jobs:
       run: |
         nohup java -jar target/orders-service-example-0.0.1-SNAPSHOT.jar \
           --server.port=8081 \
-          --payment.service.url=https://h95nhqkty7.execute-api.us-east-1.amazonaws.com/payments \
-          --shipping.service.url=https://h95nhqkty7.execute-api.us-east-1.amazonaws.com/shipping \
-          --products.service.url=https://h95nhqkty7.execute-api.us-east-1.amazonaws.com/products \
+          --payment.service.url=https://a9fq8i2j11.execute-api.us-east-1.amazonaws.com/payments \
+          --shipping.service.url=https://a9fq8i2j11.execute-api.us-east-1.amazonaws.com/shipping \
+          --products.service.url=https://a9fq8i2j11.execute-api.us-east-1.amazonaws.com/products \
           > app.log 2>&1 &
         sleep 10 # Wait for the application to start
 
